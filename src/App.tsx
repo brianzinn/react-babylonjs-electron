@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import "@babylonjs/core/Physics/physicsEngineComponent"  // side-effect adds scene.enablePhysics function
 import { Vector3, PhysicsImpostor, Mesh, Nullable, Color3, FresnelParameters, Texture, Scene as BabylonjsScene } from '@babylonjs/core';
 import { CannonJSPlugin, /* AmmoJSPlugin */ } from '@babylonjs/core/Physics/Plugins'
@@ -22,22 +22,23 @@ const onButtonClicked = () => {
 }
 
 let scene: Nullable<BabylonjsScene> = null;
-let inspectorEnabled = false;
-const buttonClicked = () => {
-  if (scene !== null) {
-    if (scene.debugLayer.isVisible()) {
-      scene.debugLayer.hide();
-    } else {
-      scene.debugLayer.show();
-    }
-    inspectorEnabled = scene.debugLayer.isVisible();
-  } else {
-    console.error('scene not ready yet');
-  }
-  
-}
 
 const App: React.FC = () => {
+  const [inspectorVisible, setInspectorVisible] = useState(false);
+
+  const buttonClicked = () => {
+    if (scene !== null) {
+      if (scene.debugLayer.isVisible()) {
+        scene.debugLayer.hide();
+      } else {
+        scene.debugLayer.show();
+      }
+      setInspectorVisible(scene.debugLayer.isVisible());
+    } else {
+      console.error('scene not ready yet');
+    }
+  }
+
   const sphereRef = useCallback(node => {
     sphere = node.hostInstance;
   }, []);
@@ -45,8 +46,8 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <p>`react-babylonjs` + Electron </p>
-        <button onClick={buttonClicked}>{inspectorEnabled ? 'hide': 'show'}</button>
+        <p>`react-babylonjs` + Electron <button onClick={buttonClicked}>{inspectorVisible ? 'hide': 'show'}</button></p>
+        
         <Engine antialias={true} adaptToDeviceRatio={true} canvasId="sample-canvas">
           <Scene
             onSceneMount={(args: SceneEventArgs) => scene = args.scene}
