@@ -1,6 +1,32 @@
 {
   "name": "react-babylonjs-electron",
+  "description": "Electron + CRA + babylonjs + Electron Builder",
+  "homepage": "./",
   "main": "public/electron.js",
+  "author": {
+    "name": "Your Name",
+    "email": "your.email@domain.com",
+    "url": "https://your-website.com"
+  },
+  "build": {
+    "appId": "com.my-website.my-app",
+    "productName": "MyApp",
+    "copyright": "Copyright © 2020 ${author}",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "win": {
+      "target": "portable",
+      "icon": "assets/icon.png"
+    }
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -25,11 +51,15 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "rescripts start",
+    "build": "rescripts build",
+    "test": "rescripts test",
     "eject": "react-scripts eject",
-    "start-electron": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\""
+    "start-electron": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "postinstall": "electron-builder install-app-deps",
+    "package-win": "yarn build && electron-builder build --win --x64",
+    "package-mac": "yarn build && electron-builder build --mac",
+    "package-linux": "yarn build && electron-builder build --linux"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -47,6 +77,8 @@
     ]
   },
   "devDependencies": {
+    "@rescripts/cli": "^0.0.14",
+    "@rescripts/rescript-env": "^0.0.12",
     "@types/cannon": "^0.1.4",
     "concurrently": "^5.1.0",
     "cross-env": "^7.0.2",

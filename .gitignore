@@ -8,8 +8,9 @@
 # testing
 /coverage
 
-# production
+# production and electron deploy
 /build
+/dist
 
 # misc
 .DS_Store

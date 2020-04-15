@@ -1,0 +1,2 @@
+more about icons for other environments mac/linux:
+https://www.electron.build/icons

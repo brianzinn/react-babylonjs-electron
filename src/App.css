@@ -1,3 +1,12 @@
 #sample-canvas {
   width: 100%;
+  max-height: 80%;
+}
+
+.header {
+  background-color: #444444;
+  color: #FFAF00;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
 }
