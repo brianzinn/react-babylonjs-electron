@@ -99,7 +99,6 @@ const App: React.FC = () => {
             <ground name="ground1" width={10} height={10} subdivisions={2} receiveShadows={true}>
               <physicsImpostor type={PhysicsImpostor.BoxImpostor} _options={{ mass: 0, restitution: 0.9 }} />
             </ground>
-            <vrExperienceHelper webVROptions={{ createDeviceOrientationCamera: false }} enableInteractions={true} />
           </Scene>
         </Engine>
       </header>

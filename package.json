@@ -1,5 +1,6 @@
 {
   "name": "react-babylonjs-electron",
+  "main": "public/electron.js",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -15,6 +16,7 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "cannon": "^0.6.2",
+    "electron-is-dev": "^1.2.0",
     "react": "^16.13.1",
     "react-babylonjs": "2.0.6",
     "react-dom": "^16.13.1",
@@ -26,7 +28,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start-electron": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -44,6 +47,11 @@
     ]
   },
   "devDependencies": {
-    "@types/cannon": "^0.1.4"
+    "@types/cannon": "^0.1.4",
+    "concurrently": "^5.1.0",
+    "cross-env": "^7.0.2",
+    "electron": "^8.2.2",
+    "electron-builder": "^22.4.1",
+    "wait-on": "^4.0.2"
   }
 }
